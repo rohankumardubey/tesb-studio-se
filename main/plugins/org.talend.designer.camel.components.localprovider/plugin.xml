@@ -354,10 +354,10 @@
             bundleID="" />
 
         <libraryNeeded context="plugin:org.talend.designer.camel.components.localprovider"
-            name="${tesb-mail}"
-            id="javax.mail"
-            mvn_uri="mvn:javax.mail/mail/${mail.version}"
-            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/${tesb-mail}"
+            name="${tesb-jakarta.mail}"
+            id="jakarta.mail"
+            mvn_uri="mvn:com.sun.mail/jakarta.mail/${mail.version}"
+            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/${tesb-jakarta.mail}"
             bundleID="" />
 
         <libraryNeededGroup
@@ -365,7 +365,7 @@
                 id="camel-mail"
                 name="camel-mail">
             <library id="camel-mail" />
-            <library id="javax.mail" />
+            <library id="jakarta.mail" />
         </libraryNeededGroup>
 
         <libraryNeededGroup
@@ -691,10 +691,10 @@
         </libraryNeeded>
         <libraryNeeded
               context="plugin:org.talend.designer.camel.components.localprovider"
-              id="json-smart-action"
-              name="${tesb-json-smart-action}"
-              mvn_uri="mvn:net.minidev/json-smart-action/${json-smart-action-version}"
-              uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/${tesb-json-smart-action}">
+              id="json-smart"
+              name="${tesb-json-smart}"
+              mvn_uri="mvn:net.minidev/json-smart/${json-smart-version}"
+              uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/${tesb-json-smart}">
         </libraryNeeded>
         <libraryNeeded
               context="plugin:org.talend.designer.camel.components.localprovider"
@@ -992,10 +992,10 @@
             bundleID="" />
             
         <libraryNeeded context="plugin:org.talend.designer.camel.components.localprovider"
-            name="reactive-streams-1.0.2.jar"
+            name="reactive-streams-${reactive.streams.version}.jar"
             id="reactive-streams"
-            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/reactive-streams-1.0.2.jar"
-            mvn_uri="mvn:org.reactivestreams/reactive-streams/1.0.2"
+            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/reactive-streams-${reactive.streams.version}.jar"
+            mvn_uri="mvn:org.reactivestreams/reactive-streams/${reactive.streams.version}"
             bundleID="" />
              
         <libraryNeeded context="plugin:org.talend.designer.camel.components.localprovider"
@@ -1386,10 +1386,10 @@
             bundleID="" />
 
         <libraryNeeded context="plugin:org.talend.designer.camel.components.localprovider"
-            name="caffeine-2.9.0.jar"
-            id="caffeine-2.9.0"
-            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/caffeine-2.9.0.jar"
-            mvn_uri="mvn:com.github.ben-manes.caffeine/caffeine/2.9.0"
+            name="caffeine-${caffeine.version}.jar"
+            id="caffeine-${caffeine.version}"
+            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/caffeine-${caffeine.version}.jar"
+            mvn_uri="mvn:com.github.ben-manes.caffeine/caffeine/${caffeine.version}"
             bundleID="" />
 
         <!-- camel-paho -->
@@ -1435,7 +1435,7 @@
             <library
                  id="camel-aws2-ses">
            </library>
-            <library id="javax.mail" />
+            <library id="jakarta.mail" />
         </libraryNeededGroup>
         
         
@@ -1669,7 +1669,7 @@
                  id="json-path">
            </library>
            <library
-                 id="json-smart-action">
+                 id="json-smart">
            </library>
            <library
                  id="accessors-smart">

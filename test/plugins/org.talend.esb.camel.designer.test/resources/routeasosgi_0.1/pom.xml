@@ -20,12 +20,12 @@
   <dependencies>
     <dependency>
       <groupId>org.talend.libraries</groupId>
-      <artifactId>camel-core-2.25.2</artifactId>
+      <artifactId>camel-core-3.14.3</artifactId>
       <version>6.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.talend.libraries</groupId>
-      <artifactId>camel-spring-2.25.2</artifactId>
+      <artifactId>camel-spring-3.14.3</artifactId>
       <version>6.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
