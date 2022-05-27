@@ -448,6 +448,11 @@ public class CreateMavenDataServicePom extends CreateMavenJobPom {
         commonsCodecDep.setGroupId("commons-codec");
         commonsCodecDep.setArtifactId("commons-codec");
         commonsCodecDep.setVersion("1.15");
+        
+        Dependency guavaDep = new Dependency();
+        guavaDep.setGroupId("com.google.guava");
+        guavaDep.setArtifactId("guava");
+        guavaDep.setVersion("30.0-jre");
 
         dependencies.add(mavensharedDep);
         dependencies.add(commonsioDep);
@@ -465,6 +470,7 @@ public class CreateMavenDataServicePom extends CreateMavenJobPom {
         dependencies.add(jsoupDep);
         dependencies.add(mavenModelDep);
         dependencies.add(commonsCodecDep);
+        dependencies.add(guavaDep);
         plugin.setDependencies(dependencies);
 
         return plugin;
