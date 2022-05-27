@@ -1530,7 +1530,7 @@
             
             <!-- Camel Core Feature -->
             
-            <library id="caffeine-2.9.0" />
+            <library id="caffeine-${caffeine.version}" />
 
 			<library id="camel-api" />
 			<library id="camel-management-api" />
