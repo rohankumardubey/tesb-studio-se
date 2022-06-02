@@ -23,7 +23,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.talend.commons.exception.PersistenceException;
-import org.talend.core.model.components.ComponentUtilities;
 import org.talend.core.model.general.Project;
 import org.talend.core.model.process.EConnectionType;
 import org.talend.core.model.process.IProcess;
