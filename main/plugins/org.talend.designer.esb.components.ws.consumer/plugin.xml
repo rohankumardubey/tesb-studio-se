@@ -73,10 +73,9 @@
         </libraryNeededGroup>
 
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-bindings-soap}"
+            name="cxf-rt-bindings-soap-3.4.7.jar"
             id="cxf-rt-bindings-soap"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-bindings-soap}"
-            mvn_uri="mvn:org.apache.cxf/cxf-rt-bindings-soap/3.3.10"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-bindings-soap/3.4.7"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
             name="${tesb-cxf-rt-wsdl}"
@@ -95,10 +94,9 @@
             uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-asm}"
             bundleID="" /-->
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-databinding-jaxb}"
+            name="cxf-rt-databinding-jaxb-3.4.7.jar"
             id="cxf-rt-databinding-jaxb"
-             mvn_uri="mvn:org.apache.cxf/cxf-rt-databinding-jaxb/3.3.10"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-databinding-jaxb}"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-databinding-jaxb/3.4.7"
             bundleID="" />
 
         <libraryNeededGroup
@@ -146,10 +144,9 @@
             uripath="platform:/base/plugins/org.apache.xml.resolver_1.2.0.v201005080400.jar"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-bindings-xml}"
+            name="cxf-rt-bindings-xml-3.4.7.jar"
             id="cxf-rt-bindings-xml"
-            mvn_uri="mvn:org.apache.cxf/cxf-rt-bindings-xml/3.3.10"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-bindings-xml}"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-bindings-xml/3.4.7"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
             name="${tesb-cxf-rt-frontend-simple}"
@@ -242,10 +239,9 @@
         </libraryNeededGroup>
 
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-transports-http-jetty}"
+            name="cxf-rt-transports-http-jetty-3.4.7.jar"
             id="cxf-rt-transports-http-jetty"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-transports-http-jetty}"
-            mvn_uri="mvn:org.apache.cxf/cxf-rt-transports-http-jetty/3.3.10"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-transports-http-jetty/3.4.7"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
             name="${tesb-cxf-rt-transports-http}"
@@ -391,22 +387,19 @@
         </libraryNeededGroup>
 
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-ws-security}"
+            name="cxf-rt-ws-security-3.4.7.jar"
             id="cxf-rt-ws-security"
-            mvn_uri="mvn:org.apache.cxf/cxf-rt-ws-security/3.3.10"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-ws-security}"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-ws-security/3.4.7"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-security-saml}"
+            name="cxf-rt-security-saml-3.4.7.jar"
             id="cxf-rt-security-saml"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-security-saml}"
-            mvn_uri="mvn:org.apache.cxf/cxf-rt-security-saml/3.3.10"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-security-saml/3.4.7"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
-            name="${tesb-cxf-rt-security}"
+            name="cxf-rt-security-3.4.7.jar"
             id="cxf-rt-security"
-            mvn_uri="mvn:org.apache.cxf/cxf-rt-security/3.3.10"
-            uripath="platform:/plugin/org.talend.libraries.esb/lib/${tesb-cxf-rt-security}"
+            mvn_uri="mvn:org.apache.cxf/cxf-rt-security/3.4.7"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
             name="${tesb-wss4j-ws-security-common}"

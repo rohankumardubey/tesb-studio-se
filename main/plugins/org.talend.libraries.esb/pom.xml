@@ -652,19 +652,19 @@
 	<dependency>
 	    <groupId>org.apache.cxf</groupId>
 	    <artifactId>cxf-rt-databinding-jaxb</artifactId>
-	    <version>3.3.10</version>
+	    <version>3.4.7</version>
 	</dependency>
 	  
 	<dependency>
 	    <groupId>org.apache.cxf</groupId>
 	    <artifactId>cxf-rt-security</artifactId>
-	    <version>3.3.10</version>
+	    <version>3.4.7</version>
 	</dependency>
 	  
 	<dependency>
 	    <groupId>org.apache.cxf</groupId>
 	    <artifactId>cxf-rt-bindings-xml</artifactId>
-	    <version>3.3.10</version>
+	    <version>3.4.7</version>
 	</dependency>
 	  
 	<dependency>
