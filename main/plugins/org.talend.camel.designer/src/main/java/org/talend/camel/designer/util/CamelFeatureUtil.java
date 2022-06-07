@@ -20,6 +20,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.util.EList;
 import org.talend.commons.exception.PersistenceException;
 import org.talend.core.model.general.Project;
@@ -230,13 +232,16 @@ public final class CamelFeatureUtil {
     }
 
     private static void addChildSpecificFeatures(Collection<FeatureModel> features, ProcessItem routeProcess, IDesignerCoreService designerService) {
+        //APPINT-34618 add pax-jdbc-mssql feature if mssql is used in child job.
         Set<JobInfo> childrenJobInfo = ProcessorUtilities.getChildrenJobInfo(routeProcess);
         for(JobInfo jobInfo: childrenJobInfo) {
-            //APPINT-34618 add pax-jdbc-mssql feature if mssql is used in child job.
-            if(designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
-                    .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT).stream()
-                    .anyMatch(lib -> lib.matches("mssql-jdbc.jar"))) {
+            Stream<String> stream = designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
+                    .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT).stream();
+            if(stream.anyMatch(lib -> lib.matches("mssql-jdbc.jar"))) {
                 features.addAll( Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-mssql") }));
+                break;
+            }else if(stream.anyMatch(lib -> lib.matches("jtds-1.3.1-patch-20190523.jar"))) {
+                features.addAll( Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-jtds") }));
                 break;
             }
         }
