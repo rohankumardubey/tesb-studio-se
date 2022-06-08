@@ -313,15 +313,18 @@ public final class CamelFeatureUtil {
 
         //APPINT-34618 add pax-jdbc-mssql feature if mssql is used in child job.
         Set<JobInfo> childrenJobInfo = ProcessorUtilities.getChildrenJobInfo(routeProcess);
-        for(JobInfo jobInfo: childrenJobInfo) {
-            Stream<String> stream = designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
-                    .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT).stream();
-            if(stream.anyMatch(lib -> lib.matches("mssql-jdbc.jar"))) {
-                features.addAll( Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-mssql") }));
-                break;
-            }else if(stream.anyMatch(lib -> lib.matches("jtds-1.3.1-patch-20190523.jar"))) {
-                features.addAll( Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-jtds") }));
-                break;
+        boolean findMssqlDriverInChild = false;
+        boolean findJtdsDriverInChild = false;
+        for (JobInfo jobInfo : childrenJobInfo) {
+            Set<String> libs = designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
+                    .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT);
+            if (!findMssqlDriverInChild && libs.contains("mssql-jdbc.jar")) {
+                findMssqlDriverInChild = true;
+                features.addAll(Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-mssql") }));
+            } 
+            if (!findJtdsDriverInChild && libs.contains("jtds-1.3.1-patch-20190523.jar")) {
+                findJtdsDriverInChild = true;
+                features.addAll(Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-jtds") }));
             }
         }
         
