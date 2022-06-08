@@ -291,6 +291,30 @@ public final class CamelFeatureUtil {
         }
     }
     
+    private static void addChildSpecificFeatures(Collection<FeatureModel> features, ProcessItem routeProcess,
+            IDesignerCoreService designerService) {
+        Set<JobInfo> childrenJobInfo = ProcessorUtilities.getChildrenJobInfo(routeProcess);
+        boolean findMssqlDriverInChild = false;
+        boolean findJtdsDriverInChild = false;
+        for (JobInfo jobInfo : childrenJobInfo) {
+            if (findMssqlDriverInChild && findJtdsDriverInChild) {
+                break;
+            }
+            Set<String> libs = designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
+                    .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT);
+            // APPINT-34618 add pax-jdbc-mssql feature if mssql driver is used in child job.
+            if (!findMssqlDriverInChild && libs.contains("mssql-jdbc.jar")) {
+                findMssqlDriverInChild = true;
+                features.addAll(Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-mssql") }));
+            }
+            // APPINT-34618 add pax-jdbc-jtds feature if jtds driver is used in child job.
+            if (!findJtdsDriverInChild && libs.contains("jtds-1.3.1-patch-20190523.jar")) {
+                findJtdsDriverInChild = true;
+                features.addAll(Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-jtds") }));
+            }
+        }
+    }
+    
 	/**
 	 * Add feature and bundle to Feature Model
 	 *
@@ -309,26 +333,7 @@ public final class CamelFeatureUtil {
             }
         }
 
-        // APPINT-34618 add pax-jdbc-mssql feature if mssql is used in child job.
-        Set<JobInfo> childrenJobInfo = ProcessorUtilities.getChildrenJobInfo(routeProcess);
-        boolean findMssqlDriverInChild = false;
-        boolean findJtdsDriverInChild = false;
-        for (JobInfo jobInfo : childrenJobInfo) {
-            if (findMssqlDriverInChild && findJtdsDriverInChild) {
-                break;
-            }
-            Set<String> libs = designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
-                    .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT);
-            if (!findMssqlDriverInChild && libs.contains("mssql-jdbc.jar")) {
-                findMssqlDriverInChild = true;
-                features.addAll(Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-mssql") }));
-            }
-            if (!findJtdsDriverInChild && libs.contains("jtds-1.3.1-patch-20190523.jar")) {
-                findJtdsDriverInChild = true;
-                features.addAll(Arrays.asList(new FeatureModel[] { new FeatureModel("pax-jdbc-jtds") }));
-            }
-        }
-        
+        addChildSpecificFeatures(features, routeProcess, designerService);
         addNodesSpecialFeatures(features, routeProcess.getProcess());
         addConnectionsSpecialFeatures(features, routeProcess.getProcess());
 
