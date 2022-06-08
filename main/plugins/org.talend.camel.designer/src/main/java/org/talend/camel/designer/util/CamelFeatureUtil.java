@@ -236,6 +236,9 @@ public final class CamelFeatureUtil {
         boolean findMssqlDriverInChild = false;
         boolean findJtdsDriverInChild = false;
         for (JobInfo jobInfo : childrenJobInfo) {
+            if (findMssqlDriverInChild && findJtdsDriverInChild) {
+                break;
+            }
             Set<String> libs = designerService.getProcessFromProcessItem(jobInfo.getProcessItem(), false)
                     .getNeededLibraries(TalendProcessOptionConstants.MODULES_DEFAULT);
             // APPINT-34618 add pax-jdbc-mssql feature if mssql driver is used in child job.
