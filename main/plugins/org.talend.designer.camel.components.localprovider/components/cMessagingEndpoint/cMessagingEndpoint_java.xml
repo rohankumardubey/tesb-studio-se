@@ -58,8 +58,17 @@
 						<ITEM NAME="AVRO-RPC" VALUE="AVRO-RPC"/>
 						<ITEM NAME="AVRO" VALUE="AVRO"/>
 						<!-- <ITEM NAME="AWS" VALUE="AWS"/> -->
+						<ITEM NAME="AWS2-S3" VALUE="AWS2-S3"/>
+						<ITEM NAME="AWS2-SES" VALUE="AWS2-SES"/>
+						<ITEM NAME="AWS2-SNS" VALUE="AWS2-SNS"/>
+						<ITEM NAME="AWS2-SQS" VALUE="AWS2-SQS"/>
+						<ITEM NAME="AWS2-STS" VALUE="AWS2-STS"/>
+						<ITEM NAME="AWS2-MQ" VALUE="AWS2-MQ"/>
+						<ITEM NAME="AWS2-EKS" VALUE="AWS2-EKS"/>
+						<ITEM NAME="AWS2-IAM" VALUE="AWS2-IAM"/>
 						<ITEM NAME="AZURE-STORAGE-BLOB" VALUE="AZURE-STORAGE-BLOB"/>
 						<ITEM NAME="AZURE-STORAGE-QUEUE" VALUE="AZURE-STORAGE-QUEUE"/>
+						<ITEM NAME="AZURE-STORAGE-DATALAKE" VALUE="AZURE-STORAGE-DATALAKE"/>
 						<ITEM NAME="BARCODE" VALUE="BARCODE"/>
 						<ITEM NAME="BASE64" VALUE="BASE64"/>
 						<ITEM NAME="BEAN-VALIDATOR" VALUE="BEAN-VALIDATOR"/>
@@ -297,7 +306,7 @@
 						<ITEM NAME="SPRING-BATCH" VALUE="SPRING-BATCH"/>
 						<ITEM NAME="SPRING-INTEGRATION" VALUE="SPRING-INTEGRATION"/>
 						<ITEM NAME="SPRING-JAVACONFIG" VALUE="SPRING-JAVACONFIG"/>
-						<!-- <ITEM NAME="SPRING-JDBC" VALUE="SPRING-JDBC"/> -->
+						<ITEM NAME="SPRING-JDBC" VALUE="SPRING-JDBC"/>
 						<ITEM NAME="SPRING-LDAP" VALUE="SPRING-LDAP"/>
 						<ITEM NAME="SPRING-MAIN" VALUE="SPRING-MAIN"/>
 						<ITEM NAME="SPRING-RABBITMQ" VALUE="SPRING-RABBITMQ"/>
@@ -405,9 +414,17 @@
 			<IMPORT MODULE="camel-attachments-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-attachments-alldep-${camel.version}/6.0.0" NAME="talend-camel-attachments" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-attachments-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['ATTACHMENTS']" />
 			<IMPORT MODULE="camel-avro-rpc-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-avro-rpc-alldep-${camel.version}/6.0.0" NAME="talend-camel-avro-rpc" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-avro-rpc-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AVRO-RPC']" />
 			<IMPORT MODULE="camel-avro-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-avro-alldep-${camel.version}/6.0.0" NAME="talend-camel-avro" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-avro-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AVRO']" />
-			<IMPORT MODULE="camel-aws-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS']" />
+			<IMPORT MODULE="camel-aws2-s3-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-s3-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-s3" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-s3-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-S3']" />
+			<IMPORT MODULE="camel-aws2-ses-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-ses-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-ses" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-ses-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-SES']" />
+			<IMPORT MODULE="camel-aws2-sns-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-sns-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-sns" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-sns-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-SNS']" />
+			<IMPORT MODULE="camel-aws2-sqs-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-sqs-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-sqs" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-sqs-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-SQS']" />
+			<IMPORT MODULE="camel-aws2-sts-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-sts-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-sts" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-sts-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-STS']" />
+			<IMPORT MODULE="camel-aws2-mq-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-mq-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-mq" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-mq-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-MQ']" />
+			<IMPORT MODULE="camel-aws2-iam-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-iam-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-iam" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-iam-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-IAM']" />
+			<IMPORT MODULE="camel-aws2-eks-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-aws2-eks-alldep-${camel.version}/6.0.0" NAME="talend-camel-aws2-eks" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-aws2-eks-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AWS2-EKS']" />
 			<IMPORT MODULE="camel-azure-storage-blob-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-azure-storage-blob-alldep-${camel.version}/6.0.0" NAME="talend-camel-azure-storage-blob" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-azure-storage-blob-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AZURE-STORAGE-BLOB']" />
 			<IMPORT MODULE="camel-azure-storage-queue-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-azure-storage-queue-alldep-${camel.version}/6.0.0" NAME="talend-camel-azure-storage-queue" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-azure-storage-queue-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AZURE-STORAGE-QUEUE']" />
+			<IMPORT MODULE="camel-azure-storage-datalake-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-azure-storage-datalake-alldep-${camel.version}/6.0.0" NAME="talend-camel-azure-storage-datalake" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-azure-storage-queue-datalake-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['AZURE-STORAGE-DATALAKE']" />
 			<IMPORT MODULE="camel-barcode-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-barcode-alldep-${camel.version}/6.0.0" NAME="talend-camel-barcode" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-barcode-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['BARCODE']" />
 			<IMPORT MODULE="camel-base64-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-base64-alldep-${camel.version}/6.0.0" NAME="talend-camel-base64" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-base64-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['BASE64']" />
 			<IMPORT MODULE="camel-bean-validator-alldep-${camel.version}.jar" MVN="mvn:org.talend.libraries/camel-bean-validator-alldep-${camel.version}/6.0.0" NAME="talend-camel-bean-validator" UrlPath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/camel-bean-validator-alldep-${camel.version}.jar" REQUIRED_IF="HOTLIBS.LIBPATH IN ['BEAN-VALIDATOR']" />
