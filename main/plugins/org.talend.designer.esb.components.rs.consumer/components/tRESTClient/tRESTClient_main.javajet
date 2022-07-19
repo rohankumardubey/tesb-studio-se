@@ -46,6 +46,12 @@ String useAuth = ElementParameterParser.getValue(node, "__NEED_AUTH__");
 if (!node.getElementParameter("NEED_AUTH").isContextMode()) {
 	// non-dynamic (bug with non updating parameter value after removing field from dynamic)
 	useAuth = "true".equals(useAuth) ? "true" : "false";
+} else {
+    for (IContextParameter ctxParam: params) {
+        if(ctxParam.getName().equals(useAuth.replace("context.", ""))){
+            useAuth = "true".equals(ctxParam.getValue()) ? "true" : "false";
+        }
+    }
 }
 String authType = paramsHelper.getStringParam("__AUTH_TYPE__");
 if (!node.getElementParameter("AUTH_TYPE").isContextMode()) {

@@ -51,13 +51,6 @@
             uripath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-pool-1.6.jar"
             bundleID="" />
 
-        <libraryNeeded context="plugin:org.talend.designer.camel.components.localprovider"
-            name="${tesb-activemq-all}"
-            id="activemq-all"
-            mvn_uri="mvn:org.apache.activemq/activemq-all/${activemq.version}"
-            uripath="platform:/plugin/org.talend.designer.camel.components.localprovider/lib/${tesb-activemq-all}"
-            bundleID="" />
-
        <libraryNeededGroup
                 description="activemq"
                 id="activemq"
