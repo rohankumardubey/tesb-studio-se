@@ -253,7 +253,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
         this.monitor = monitor;
         String groupId = getGroupId();
         String routeName = getArtifactId();
-        String routeVersion = getArtifactVersion();
+        String routeVersion = bundleVersion; //getArtifactVersion();
 
         // FIXME temporary solution for TESB-27587, in case of artivact id is diff with parent route name
 //        if (CommonUIPlugin.isFullyHeadless()) {
