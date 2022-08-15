@@ -514,8 +514,13 @@
 	<!-- SAM -->
 	<dependency>
 		<groupId>org.talend.esb</groupId>
-		<artifactId>sam-agent</artifactId>
+		<artifactId>sam-common</artifactId>
 		<version>${tesb.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.talend.esb</groupId>
+		<artifactId>sam-agent</artifactId>
+		<version>${sam-agent.version}</version>
 		<exclusions>
 			<exclusion>
 				<groupId>commons-lang</groupId>
@@ -524,6 +529,10 @@
 			<exclusion>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.talend.esb</groupId>
+				<artifactId>sam-common</artifactId>
 			</exclusion>
 		</exclusions>
 	</dependency>
@@ -537,7 +546,7 @@
 	<dependency>
 		<groupId>org.talend.esb</groupId>
 		<artifactId>security-common</artifactId>
-		<version>${tesb.version}</version>
+		<version>${security-common.version}</version>
 	</dependency>
 	<!-- cTalendJob -->
 	<dependency>

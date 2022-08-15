@@ -31,7 +31,9 @@
     <spring.version>5.3.20</spring.version>
     <scala.version>2.11.7</scala.version>
     <jettison.version>1.4.1</jettison.version>
-    <tesb.version>${maven.compatible.version}</tesb.version>
+    <tesb.version>8.0.1</tesb.version>
+    <sam-agent.version>8.0.1.20220318</sam-agent.version>
+    <security-common.version>8.0.1.20220520</security-common.version>
     <commons-lang3.version>3.8.1</commons-lang3.version>
     <dom4j.version>2.1.3</dom4j.version>
     <mvn-dom4j>mvn:org.dom4j/dom4j/${dom4j.version}</mvn-dom4j>

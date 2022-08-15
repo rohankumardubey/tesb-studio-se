@@ -407,22 +407,22 @@ public class CreateMavenDataServicePom extends CreateMavenJobPom {
         Dependency mavenCoreDep = new Dependency();
         mavenCoreDep.setGroupId("org.apache.maven");
         mavenCoreDep.setArtifactId("maven-core");
-        mavenCoreDep.setVersion("3.8.3");
+        mavenCoreDep.setVersion("3.8.6");
 
         Dependency mavenCompatDep = new Dependency();
         mavenCompatDep.setGroupId("org.apache.maven");
         mavenCompatDep.setArtifactId("maven-compat");
-        mavenCompatDep.setVersion("3.8.3");
+        mavenCompatDep.setVersion("3.8.6");
 
         Dependency mavenSettingsDep = new Dependency();
         mavenSettingsDep.setGroupId("org.apache.maven");
         mavenSettingsDep.setArtifactId("maven-settings");
-        mavenSettingsDep.setVersion("3.8.3");
+        mavenSettingsDep.setVersion("3.8.6");
 
         Dependency mavenSettingsBdDep = new Dependency();
         mavenSettingsBdDep.setGroupId("org.apache.maven");
         mavenSettingsBdDep.setArtifactId("maven-settings-builder");
-        mavenSettingsBdDep.setVersion("3.8.3");
+        mavenSettingsBdDep.setVersion("3.8.6");
 
         Dependency plexusArchiverDep = new Dependency();
         plexusArchiverDep.setGroupId("org.codehaus.plexus");
@@ -442,7 +442,7 @@ public class CreateMavenDataServicePom extends CreateMavenJobPom {
         Dependency mavenModelDep = new Dependency();
         mavenModelDep.setGroupId("org.apache.maven");
         mavenModelDep.setArtifactId("maven-model");
-        mavenModelDep.setVersion("3.8.3");
+        mavenModelDep.setVersion("3.8.6");
 
         Dependency commonsCodecDep = new Dependency();
         commonsCodecDep.setGroupId("commons-codec");

@@ -207,8 +207,7 @@
         <!-- ${tesb-commons-logging} -->
         <libraryNeeded context="plugin:org.apache.commons.logging"
             name="org.apache.commons.logging_1.2.0.v20180409-1502.jar"
-            id="commons-logging"
-            mvn_uri="mvn:commons-logging/commons-logging/1.2"
+            id="commons-logging"            
             uripath="platform:/base/plugins/org.apache.commons.logging_1.2.0.v20180409-1502.jar"
             bundleID="" />
         <libraryNeeded context="plugin:org.talend.libraries.esb"
