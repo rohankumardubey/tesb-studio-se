@@ -170,7 +170,7 @@ public class ExportServiceAction implements IRunnableWithProgress {
             }
         }
 
-        FeaturesModel feature = new FeaturesModel(getGroupId(), getServiceName(), getFeatureArtifactVersion());
+        FeaturesModel feature = new FeaturesModel(getGroupId(), getServiceName(), getServiceVersion());
         feature.setConfigName(getServiceName());
         feature.setContexts(contextValues);
 
