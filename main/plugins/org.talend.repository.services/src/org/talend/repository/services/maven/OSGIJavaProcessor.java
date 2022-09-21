@@ -57,7 +57,7 @@ public class OSGIJavaProcessor extends MavenJavaProcessor {
         IProgressMonitor monitor = new NullProgressMonitor();
         ProcessItem processItem = (ProcessItem) property.getItem();
         FeaturesModel featuresModel = new FeaturesModel(PomIdsHelper.getJobGroupId(processItem.getProperty()),
-                processItem.getProperty().getDisplayName(), PomIdsHelper.getJobFeatureVersion(processItem.getProperty(), null));
+                processItem.getProperty().getDisplayName(), PomIdsHelper.getVersion(processItem.getProperty(), null));
         featuresModel.setConfigName(this.context.getName());
         featuresModel.setContexts(JobContextUtils.getContextsMap(processItem));
         BundleModel bundleModel = new BundleModel(PomIdsHelper.getJobGroupId(processItem.getProperty()),

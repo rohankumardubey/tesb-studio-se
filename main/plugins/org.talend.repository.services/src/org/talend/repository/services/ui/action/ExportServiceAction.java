@@ -169,8 +169,8 @@ public class ExportServiceAction implements IRunnableWithProgress {
                 destinationPath = filePath + fileName + FileConstants.KAR_FILE_SUFFIX;
             }
         }
-
-        FeaturesModel feature = new FeaturesModel(getGroupId(), getServiceName(), getServiceVersion());
+        
+        FeaturesModel feature = new FeaturesModel(getGroupId(), getServiceName(), getFeatureArtifactVersion());
         feature.setConfigName(getServiceName());
         feature.setContexts(contextValues);
 
@@ -458,4 +458,7 @@ public class ExportServiceAction implements IRunnableWithProgress {
         }
     }
 
+    protected String getFeatureArtifactVersion() {
+        return PomIdsHelper.getVersion(serviceItem.getProperty(), getServiceVersion());
+    }
 }
