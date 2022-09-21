@@ -2901,6 +2901,88 @@ if (isProvider) {
                 registry.put(<%=beanID%>, new <%=beanClass%>(<%=sb.toString()%>));
 <%
             }
+            for (INode node: process.getNodesOfType("cSQLConnection")) {
+                final String cid = node.getUniqueName();
+                NodeParamsHelper helper = new NodeParamsHelper(node);
+
+                String driverClassName = helper.getStringParam("__DRIVER_CLASS_NAME__");
+                String jdbcURL = helper.getStringParam("__JDBC_URL__");
+                boolean useDsAlias = helper.getBoolParam("__USE_DATA_SOURCE_ALIAS__");
+                boolean authRequired = helper.getBoolParam("__AUTH_REQUIRED__");
+                String dsAlias = helper.getStringParam("__DATA_SOURCE_ALIAS__");
+%>
+                if(camelContext.getRegistry().lookupByName("<%=cid%>") == null) {
+                    if (<%=useDsAlias%> && inOSGi) {
+                        javax.sql.DataSource ds_<%=cid%> = routines.system.BundleUtils.getService(javax.sql.DataSource.class, "(osgi.jndi.service.name=" + <%=dsAlias%> + ")");
+                        if (ds_<%=cid%> != null) {
+                            log.info("Using container managed datasource: " + <%=dsAlias%> + " : " + ds_<%=cid%>.toString());
+                            camelContext.getRegistry().bind("<%=cid%>", ds_<%=cid%>);
+                        } else {
+                            log.error("Datasource reference could not be found for: " + <%=dsAlias%>);
+                        }
+
+                    } else {
+                        org.apache.commons.dbcp2.BasicDataSource ds_<%=cid%> = new org.apache.commons.dbcp2.BasicDataSource();
+                        ds_<%=cid%>.setDriverClassName(<%=driverClassName%>);
+                        ds_<%=cid%>.setUrl(<%=jdbcURL%>);
+<%
+                        if (authRequired) {
+                            String username = helper.getStringParam("__SQL_USERNAME__");
+                            String passwordFieldName = "__SQL_PASSWORD__";
+%>
+                        <%@ include file="@{org.talend.designer.components.localprovider}/components/templates/password.javajet"%>
+                        ds_<%=cid%>.setUsername(<%=username%>);
+                        ds_<%=cid%>.setPassword(decryptedPassword_<%=cid%>);
+<%
+                        }
+                        String initSize = helper.getStringParam("__INITIAL_SIZE__");
+                        String maxCon = helper.getStringParam("__MAX_TOTAL__");
+                        String minIdle = helper.getStringParam("__MIN_IDLE__");
+                        String maxIdle = helper.getStringParam("__MAX_IDLE__");
+                        boolean setTimeouts = helper.getBoolParam("__SET_TIMEOUTS__");
+                        boolean useValidationQuery = helper.getBoolParam("__USE_VALIDATION_QUERY__");
+                        boolean useInitSQL = helper.getBoolParam("__USE_INIT_SQL__");
+%>
+                        ds_<%=cid%>.setInitialSize(<%=initSize%>);
+                        ds_<%=cid%>.setMaxTotal(<%=maxCon%>);
+                        ds_<%=cid%>.setMinIdle(<%=minIdle%>);
+                        ds_<%=cid%>.setMaxIdle(<%=maxIdle%>);
+<%
+                        if (setTimeouts) {
+                            String queryTimeout = helper.getStringParam("__QUERY_TIMEOUT__");
+                            String conTimeout = helper.getStringParam("__MAX_CONNECTION_DURATION__");
+                            String vaildationTimeout = helper.getStringParam("__VALIDATION_QUERY_TIMEOUT__");
+%>
+                        ds_<%=cid%>.setMaxConn(<%=conTimeout%>);
+                        ds_<%=cid%>.setDefaultQueryTimeout(<%=queryTimeout%>);
+<%
+                            if (useValidationQuery) {
+                                String validationQueryTimeout = helper.getStringParam("__VALIDATION_QUERY_TIMEOUT__");
+%>
+                        ds_<%=cid%>.setValidationQueryTimeout(java.time.Duration.ofSeconds(<%=validationQueryTimeout%>));
+<%
+                            }
+                        }
+                        if (useValidationQuery) {
+                            String validationQuery = helper.getStringParam("__VALIDATION_QUERY__");
+%>
+                        ds_<%=cid%>.setValidationQuery(<%=validationQuery%>);
+<%
+                        }
+                        if (useInitSQL) {
+                            String initSQL = helper.getStringParam("__INIT_QUERY__");
+                            initSQL = org.talend.core.model.utils.NodeUtil.replaceCRLFInMEMO_SQL(initSQL);
+		                    initSQL = initSQL.replace("\\n", "");
+%>
+                        ds_<%=cid%>.setConnectionInitSqls(java.util.Arrays.asList(<%=initSQL%>));
+<%
+                        }
+%>
+                        camelContext.getRegistry().bind("<%=cid%>", ds_<%=cid%>);
+                    }
+                }
+<%
+            }
             //cMQConnectionFactory http://jira.talendforge.org/browse/TESB-4860
             for (INode node: process.getNodesOfType("cMQConnectionFactory")) {
                 NodeParamsHelper helper = new NodeParamsHelper(node);
@@ -3519,10 +3601,17 @@ if (isProvider) {
 <%
                         }
                     } else if ("LEVELDB".equals(repository)) {
+                        boolean usePersistentFile = "true".equals(ElementParameterParser.getValue(node, "__USE_PERSISTENT_FILE__"));
                         String persistentFile = ElementParameterParser.getValue(node, "__PERSISTENT_FILENAME__");
+                        if (usePersistentFile) {
 %>
                             org.apache.camel.component.leveldb.LevelDBAggregationRepository repo_<%=node.getUniqueName() %> = new org.apache.camel.component.leveldb.LevelDBAggregationRepository("<%=node.getUniqueName() %>", <%=persistentFile%>);
 <%
+                        } else {
+%>
+                            org.apache.camel.component.leveldb.LevelDBAggregationRepository repo_<%=node.getUniqueName() %> = new org.apache.camel.component.leveldb.LevelDBAggregationRepository("<%=node.getUniqueName() %>");
+<%
+                        }
                         if (useRecovery) {
 %>
                             repo_<%=node.getUniqueName() %>.setUseRecovery(true);
