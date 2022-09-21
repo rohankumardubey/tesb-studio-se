@@ -79,6 +79,7 @@
 		<plexus.component.annotations.versions>2.1.0</plexus.component.annotations.versions>
 		<wagon.provider.api.version>3.2.0</wagon.provider.api.version>
 		<caffeine.version>2.9.0</caffeine.version>
+		<json-schema-validator.version>1.0.53</json-schema-validator.version>
 	</properties>
 
 	<dependencies>
@@ -847,7 +848,26 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>failureaccess</artifactId>
 			<version>${guava.failureaccess.version}</version>
-		</dependency>		
+		</dependency>
+
+		<!-- cXmlValidator -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-validator</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+
+		<!-- cJsonValidator -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-json-validator</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.networknt</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${json-schema-validator.version}</version>
+		</dependency>
 
 	</dependencies>
 
