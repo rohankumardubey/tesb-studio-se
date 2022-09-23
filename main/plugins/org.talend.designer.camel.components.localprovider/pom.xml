@@ -80,6 +80,7 @@
 		<wagon.provider.api.version>3.2.0</wagon.provider.api.version>
 		<caffeine.version>2.9.0</caffeine.version>
 		<json-schema-validator.version>1.0.53</json-schema-validator.version>
+		<commons-dbcp2.version>2.9.0</commons-dbcp2.version>
 	</properties>
 
 	<dependencies>
@@ -867,6 +868,25 @@
 			<groupId>com.networknt</groupId>
 			<artifactId>json-schema-validator</artifactId>
 			<version>${json-schema-validator.version}</version>
+		</dependency>
+
+		<!-- cSQL -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-sql</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- cSQLConnection -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${commons-dbcp2.version}</version>
 		</dependency>
 
 	</dependencies>
