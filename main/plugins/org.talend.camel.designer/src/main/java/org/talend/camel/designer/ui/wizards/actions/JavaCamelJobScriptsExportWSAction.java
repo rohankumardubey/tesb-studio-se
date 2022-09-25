@@ -305,7 +305,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
                 throw new InvocationTargetException(e);
             }
 
-            BundleModel routeModel = new BundleModel(groupId, routeName, routeVersion, routeFile);
+            BundleModel routeModel = new BundleModel(groupId, routeName, getFeatureRouteVersion(), routeFile);
             final ProcessItem routeProcess = (ProcessItem) routeObject.getProperty().getItem();
 
             if (featuresModel.addBundle(routeModel)) {
@@ -880,6 +880,10 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
     }
 
     protected String getRouteVersion() {
-        return PomIdsHelper.getVersion(routeObject.getProperty(), bundleVersion);
+        return PomIdsHelper.getBundleVersion(routeObject.getProperty(), bundleVersion);
+    }
+
+    protected String getFeatureRouteVersion() {
+        return PomIdsHelper.getFeatureVersion(routeObject.getProperty(), bundleVersion);
     }
 }

@@ -459,6 +459,6 @@ public class ExportServiceAction implements IRunnableWithProgress {
     }
 
     protected String getFeatureArtifactVersion() {
-        return PomIdsHelper.getVersion(serviceItem.getProperty(), getServiceVersion());
+        return PomIdsHelper.getFeatureVersion(serviceItem.getProperty(), getServiceVersion());
     }
 }
