@@ -295,7 +295,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
             return;
         }
 
-        featuresModel = new FeaturesModel(groupId, routeName, routeVersion);
+        featuresModel = new FeaturesModel(groupId, routeName, getFeatureRouteVersion());
         try {
             File routeFile;
             try {
@@ -305,7 +305,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
                 throw new InvocationTargetException(e);
             }
 
-            BundleModel routeModel = new BundleModel(groupId, routeName, getFeatureRouteVersion(), routeFile);
+            BundleModel routeModel = new BundleModel(groupId, routeName, routeVersion, routeFile);
             final ProcessItem routeProcess = (ProcessItem) routeObject.getProperty().getItem();
 
             if (featuresModel.addBundle(routeModel)) {
