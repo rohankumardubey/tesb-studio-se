@@ -14,7 +14,7 @@
 	  <slf4j-api.version>1.7.32</slf4j-api.version>
 	  <reflections.version>0.9.11</reflections.version>
 	  <guava.version>30.0-jre</guava.version>
-	  <snakeyaml.version>1.30</snakeyaml.version>
+	  <snakeyaml.version>1.32</snakeyaml.version>
 	  <delight-rhino-sandbox.version>0.0.15</delight-rhino-sandbox.version>
 	  <rhino.version>1.7.14</rhino.version>
   </properties>

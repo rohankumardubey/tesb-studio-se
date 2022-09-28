@@ -61,7 +61,7 @@
 		<guava.version>30.0-jre</guava.version>
 		<guava.failureaccess.version>1.0.1</guava.failureaccess.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
-		<snakeyaml.version>1.30</snakeyaml.version>
+		<snakeyaml.version>1.32</snakeyaml.version>
 		<slf4j-api.version>1.7.32</slf4j-api.version>
 		<!-- external deps -->
 		<mvn-commons-collections>mvn:commons-collections/commons-collections/3.2.2</mvn-commons-collections>

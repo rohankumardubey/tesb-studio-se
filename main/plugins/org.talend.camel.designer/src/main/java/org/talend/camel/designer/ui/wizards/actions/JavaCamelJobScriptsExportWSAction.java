@@ -295,7 +295,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
             return;
         }
 
-        featuresModel = new FeaturesModel(groupId, routeName, getFeatureArtifactVersion());
+        featuresModel = new FeaturesModel(groupId, routeName, routeVersion);
         try {
             File routeFile;
             try {
@@ -877,9 +877,5 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
                 }
             }
         }
-    }
-
-    protected String getFeatureArtifactVersion() {
-        return PomIdsHelper.getJobFeatureVersion(routeObject.getProperty(), bundleVersion);
     }
 }
