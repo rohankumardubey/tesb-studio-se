@@ -124,6 +124,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
      * Value - Import-package string
      */
     private Map<String, String> subjobImportPackages = new HashMap<>();
+    private Map<String, String> subjobRequireBundles = new HashMap<>();
 
     private IBuildJobHandler buildJobHandler = null;
 
@@ -447,6 +448,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
             throws InvocationTargetException, InterruptedException {
 
         Set<String> jobPackageNames = new HashSet<String>();
+        Set<String> jobBundleSymbolicNames = new HashSet<String>();
 
         for (NodeType cTalendJob : EmfModelUtils.getComponentsByName(routeProcess, "cTalendJob")) { //$NON-NLS-1$
             String jobId = null;
@@ -502,6 +504,11 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
                     jobBundleSymbolicName = projectName.toLowerCase() + '.' + jobBundleSymbolicName;
                 }
             }
+
+            if (!jobBundleSymbolicNames.contains(jobBundleSymbolicName)) {
+                jobBundleSymbolicNames.add(jobBundleSymbolicName);
+            }
+
             File jobFile;
             try {
                 jobFile = File.createTempFile("job", FileConstants.JAR_FILE_SUFFIX, new File(getTempDir())); // $NON-NLS-1$
@@ -528,7 +535,8 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
             }
         }
 
-        addJobPackageToOsgiImport(routeProcess, jobPackageNames);
+        //addJobPackageToOsgiImport(routeProcess, jobPackageNames);
+        addJobNameToOsgiRequireBundle(routeProcess, jobBundleSymbolicNames);
     }
 
     private String buildBundleVersionForReferencedJob(ProcessItem routeProcess, String jobId) {
@@ -686,10 +694,43 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
         return p + "." + j + "_" + varr[0] + "_" + varr[1];
     }
 
+    private void addJobNameToOsgiRequireBundle(ProcessItem process, Set<String> jobSymbolicNames) {
+        if (jobSymbolicNames.isEmpty()) {
+            return;
+        }
+
+        String symbolicNames = "";
+        for (String symbolicName : jobSymbolicNames) {
+            if (!symbolicNames.isEmpty()) {
+                symbolicNames = symbolicNames + ",";
+            }
+            symbolicNames = symbolicNames + symbolicName;
+        }
+
+        final String REQUIRE_BUNDLES_KEY = "Require-Bundle";
+
+        if (process.getProperty().getAdditionalProperties().containsKey(REQUIRE_BUNDLES_KEY)) {
+            Object o = process.getProperty().getAdditionalProperties().get(REQUIRE_BUNDLES_KEY);
+            if (o == null) {
+                subjobRequireBundles.put(process.getProperty().getId(), symbolicNames);
+            } else if (o instanceof String) {
+                String s = (String)o;
+                if (s.isEmpty()) {
+                    subjobRequireBundles.put(process.getProperty().getId(), symbolicNames);
+                } else {
+                    subjobRequireBundles.put(process.getProperty().getId(), s + "," + symbolicNames);
+                }
+            }
+        } else {
+            subjobRequireBundles.put(process.getProperty().getId(), symbolicNames);
+        }
+    }
+
     private void addJobPackageToOsgiImport(ProcessItem process, Set<String> jobPackageNames) {
         if (jobPackageNames.isEmpty()) {
             return;
         }
+
         String packages = "";
         for (String packageName : jobPackageNames) {
             if (!packages.isEmpty()) {
@@ -728,6 +769,7 @@ public class JavaCamelJobScriptsExportWSAction implements IRunnableWithProgress 
         talendJobManager.setMultiNodes(false);
         talendJobManager.setDestinationPath(filePath.getAbsolutePath());
         talendJobManager.setSubjobImportPackages(subjobImportPackages);
+        talendJobManager.setSubjobRequireBundles(subjobRequireBundles);
 
         RepositoryNode node = new RepositoryNode(object, null, ENodeType.REPOSITORY_ELEMENT);
         JobExportAction action = new RouteBundleExportAction(Collections.singletonList(node), version, bundleVersion,
